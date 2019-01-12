@@ -1,0 +1,16 @@
+com.nano.hacker.algo.string.MakeItAnagram
+TwoStrings
+BiggerIsGreater
+
+
+ Take care of following things in coding contests:
+ 
+  - Your solutions should consider all possible corner cases.
+  - Handle large input efficiently.
+  - Handle exceptions
+  - All possible NULL checks like calling method on String which can be null.....
+  - 
+  
+  
+    If you accidentally close your browser, use the invitation link to get back to your test.
+    Hint: you can use your own IDE and use copy-paste, but make sure your solution compiles in Codility's environment.
