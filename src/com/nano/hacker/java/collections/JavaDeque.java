@@ -66,7 +66,7 @@ public class JavaDeque
     public static void main(String[] args)
     {
 	Scanner in = new Scanner(System.in);
-	Deque deque = new ArrayDeque<>();
+	Deque<Integer> deque = new ArrayDeque<>();
 	int n = in.nextInt();
 	int m = in.nextInt();
 
@@ -77,7 +77,7 @@ public class JavaDeque
 	    deque.addLast(Integer.valueOf(num));
 	}
 
-	Iterator<E> iterator = deque.iterator();
+	Iterator<Integer> iterator = deque.iterator();
 	while (iterator.hasNext())
 	{
 

@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SmartCard
 {
-ConcurrentHashMap<K, V>
+//ConcurrentHashMap<K, V>
 	private String	cardNumber	= null;
 	private double	balance		= 0.0d;
 

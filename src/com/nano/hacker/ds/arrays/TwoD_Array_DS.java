@@ -84,7 +84,7 @@ public class TwoD_Array_DS
 
 	Arrays.sort(sumArray);
 	System.out.println(sumArray[15]);
-	ArrayList<E>;
-	LinkedList<E> 
+	ArrayList<?> al;
+	LinkedList<?> ll;
     }
 }

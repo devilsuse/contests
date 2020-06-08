@@ -54,118 +54,125 @@ import java.util.Scanner;
  */
 public class Java1DArrayHard
 {
-    private static final String YES = "YES";
-    private static final String NO  = "NO";
+	private static final String YES = "YES";
+	private static final String NO  = "NO";
 
-    public static void main(String[] args)
-    {
-	Scanner scanner = new Scanner(System.in);
-	int totalTestCases = Integer.parseInt(scanner.nextLine());
-	int[][] numArr = new int[totalTestCases][];
-	int[] jumpArr = new int[totalTestCases];
-	String[] solutions = new String[totalTestCases];
-
-	for (int i = 0; i < totalTestCases; i++)
+	public static void main(String[] args)
 	{
-	    int arraySize = scanner.nextInt();
-	    numArr[i] = new int[arraySize];// first read the array size
-	    jumpArr[i] = scanner.nextInt();// then jump value
+		Scanner scanner = new Scanner(System.in);
+		int totalTestCases = Integer.parseInt(scanner.nextLine());
+		int[][] numArr = new int[totalTestCases][];
+		int[] jumpArr = new int[totalTestCases];
+		String[] solutions = new String[totalTestCases];
 
-	    int successiveOnes = 0;
-	    for (int j = 0; j < arraySize; j++)
-	    {
-		int temp = scanner.nextInt();
-		numArr[i][j] = temp;
-
-		if (temp == 1)
+		for (int i = 0; i < totalTestCases; i++)
 		{
-		    if (++successiveOnes == jumpArr[i])
-		    {
-			solutions[i] = NO;
-		    }
+			int arraySize = scanner.nextInt();
+			numArr[i] = new int[arraySize];// first read the array size
+			jumpArr[i] = scanner.nextInt();// then jump value
+
+			int successiveOnes = 0;
+			for (int j = 0; j < arraySize; j++)
+			{
+				int temp = scanner.nextInt();
+				numArr[i][j] = temp;
+
+				if (temp == 1)
+				{
+					if (++successiveOnes == jumpArr[i])
+					{
+						solutions[i] = NO;
+					}
+				}
+				else if (solutions[i] == null)// RESET count to zero only if its
+					// NOT solved Yet
+				{
+					successiveOnes = 0;
+				}
+			}
 		}
-		else if (solutions[i] == null)// RESET count to zero only if its
-		// NOT solved Yet
+		scanner.close();
+
+		for (int i = 0; i < totalTestCases; i++)
 		{
-		    successiveOnes = 0;
+			if (solutions[i] == null)
+				solve(numArr[i], jumpArr[i], solutions, i);
+
+			System.out.println(solutions[i]);
 		}
-	    }
 	}
-	scanner.close();
 
-	for (int i = 0; i < totalTestCases; i++)
+	private static void solve(int[] maze, int jump, String[] solutions,
+			int solutionIndex)
 	{
-	    if (solutions[i] == null)
-		solve(numArr[i], jumpArr[i], solutions, i);
 
-	    System.out.println(solutions[i]);
+		if (solutions[solutionIndex] != null)
+			return; // Its already solved, so dont process it.
+
+		int[] incrementArray = new int[3];
+		incrementArray[0] = jump;
+		incrementArray[1] = 1;
+		incrementArray[2] = -1;
+
+		int size=maze.length;
+		// int stepsAlreadyUndertaken = maze.length;
+		for (int i = 0; i < maze.length;)
+		{
+			if (solutions[solutionIndex] != null)// means this array is already
+				// solved
+				return;
+
+
+			/*
+			 * stepsAlreadyUndertaken--; if (stepsAlreadyUndertaken < 0) {
+			 * solutions[solutionIndex] = NO; return; }
+			 */
+			// int currentPosition = maze[i];
+
+			int newPosition = i + jump; 
+			if ((newPosition >= size) || maze[i +jump] == 0) 
+			{ 
+				if (newPosition >= size) 
+				{ 
+					solutions[solutionIndex]= YES; break; 
+					} else 
+					{ i = newPosition;// currentPosition =
+			           //newPosition; 
+			           continue; }
+
+			} else if(((newPosition = i + 1) >= size)) {
+
+			}
+
+			/*
+			 * for (int j = 0; j < 3; j++) { if (solutions[solutionIndex] ==
+			 * null) { i = possibleNextPosition(maze, i, incrementArray[j],
+			 * solutions, solutionIndex); } else { break; } }
+			 */
+		}
+
 	}
-    }
 
-    private static void solve(int[] maze, int jump, String[] solutions,
-	    int solutionIndex)
-    {
-
-	if (solutions[solutionIndex] != null)
-	    return; // Its already solved, so dont process it.
-
-	int[] incrementArray = new int[3];
-	incrementArray[0] = jump;
-	incrementArray[1] = 1;
-	incrementArray[2] = -1;
-
-	// int stepsAlreadyUndertaken = maze.length;
-	for (int i = 0; i < maze.length;)
+	private static int possibleNextPosition(int[] maze, int currentPosition,
+			int increment, String[] solutions, int solutionIndex)
 	{
-	    if (solutions[solutionIndex] != null)// means this array is already
-						 // solved
-		return;
+		int size = maze.length;
+		int newPosition = currentPosition + increment;
+		if ((newPosition >= size) || maze[newPosition] == 0)
+		{
+			if (newPosition >= size)
+			{
+				solutions[solutionIndex] = YES;
+				return 0; // as solution is reached, this number won't be
+				// checked.. So returning zero is ok.
+			}
+			else
+			{
+				newPosition = currentPosition + increment;
+				return newPosition;
+			}
 
-	    
-	    /*
-	     * stepsAlreadyUndertaken--; if (stepsAlreadyUndertaken < 0) {
-	     * solutions[solutionIndex] = NO; return; }
-	     */
-	    // int currentPosition = maze[i];
-	    
-	     int newPosition = i + jump; if ((newPosition >= size) || maze[i +
-	     jump] == 0) { if (newPosition >= size) { solutions[solutionIndex]
-	     = YES; break; } else { i = newPosition;// currentPosition =
-	     newPosition; continue; }
-	     
-	     } else if(((newPosition = i + 1) >= size) {
-	     
-	     }
-	     
-	    /*
-	     * for (int j = 0; j < 3; j++) { if (solutions[solutionIndex] ==
-	     * null) { i = possibleNextPosition(maze, i, incrementArray[j],
-	     * solutions, solutionIndex); } else { break; } }
-	     */
+		}
+		return currentPosition;
 	}
-
-    }
-
-    private static int possibleNextPosition(int[] maze, int currentPosition,
-	    int increment, String[] solutions, int solutionIndex)
-    {
-	int size = maze.length;
-	int newPosition = currentPosition + increment;
-	if ((newPosition >= size) || maze[newPosition] == 0)
-	{
-	    if (newPosition >= size)
-	    {
-		solutions[solutionIndex] = YES;
-		return 0; // as solution is reached, this number won't be
-			  // checked.. So returning zero is ok.
-	    }
-	    else
-	    {
-		newPosition = currentPosition + increment;
-		return newPosition;
-	    }
-
-	}
-	return currentPosition;
-    }
 }

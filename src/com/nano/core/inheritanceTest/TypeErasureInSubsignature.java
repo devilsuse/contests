@@ -17,15 +17,21 @@ public class TypeErasureInSubsignature extends MySuper
     }
 
     @Override
-    public void display(List<String> listString)
+    public void display(List listString)
     {
 	System.out.println("This is in SUBclass - display UNsynchronized");
     }
 
+    @Override
     public void f(List listInteger)
     {
 	System.out.println("This is in SUBclass - display UNsynchronized");
     }
+    
+	/*
+	 * @Override public void f(List<Integer> listInteger) {
+	 * System.out.println("This is in SUPER - f UNsynchronized"); }
+	 */
 }
 
 class MySuper
@@ -42,6 +48,6 @@ class MySuper
 
     public void f(List<Integer> listInteger)
     {
-	System.out.println("This is in SUBclass - display UNsynchronized");
+	System.out.println("This is in SUPER - f UNsynchronized");
     }
 }
