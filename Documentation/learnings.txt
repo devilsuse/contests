@@ -1,0 +1,5 @@
+webRTC -> peer to peer protocol(i.e. with server). Usage: video calling
+See how it varies from others like MPL, Hypermerge, Hypercore/Dat, websocket(client/server)
+
+
+
