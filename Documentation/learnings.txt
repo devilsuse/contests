@@ -3,3 +3,13 @@ See how it varies from others like MPL, Hypermerge, Hypercore/Dat, websocket(cli
 
 
 
+
+
+LinkedIn Learning:
+Cassandra 
+http2 protocol
+OKD - openshift
+AWS
+
+
+
